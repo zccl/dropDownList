@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!--标题字体-->
+		<link href='//cdn.webfont.youziku.com/webfonts/nomal/94981/45817/58315d80f629d8120c371007.css' rel='stylesheet' type='text/css' />
+		<!--菜单字体-->
+		<link href='//cdn.webfont.youziku.com/webfonts/nomal/94981/46909/58315e5ff629d8120c371009.css' rel='stylesheet' type='text/css' />
+		<link href='//cdn.webfont.youziku.com/webfonts/nomal/94981/47031/58316573f629d8120c37100b.css' rel='stylesheet' type='text/css' />
+		<link href='//cdn.webfont.youziku.com/webfonts/nomal/94981/45410/5831672ef629d8120c37100d.css' rel='stylesheet' type='text/css' />
+		<style type="text/css">
+			*
+			{
+				margin: 0;
+				padding: 0;
+			}
+			
+			html
+			{
+				/*font-family:'Edwardian72601ebe317305';*/  /*很浪的字体*/
+				/*font-family:'COCOGOOSE7261d937a17305';*/
+				font-family:'HoangYen117262454f817305';
+				font-size: 10px;
+				background: #33CC66;
+			}
+			
+			.wrap
+			{
+				width: 480px;
+				margin: 100px auto;
+			}
+			
+			h2
+			{
+				font-size: 4rem;
+				color: #fff;
+				text-align: center;
+				font-family:'ChannelSlanted2725fe86bf17305';
+			}
+			
+			.select
+			{
+				/*letter-spacing: .2em;*/
+				width: 75%;
+				margin: 0 auto;
+			}
+			
+			.select>p, .select ul
+			{
+				background: #fff;
+				font-size: 2rem;
+				border: 1px solid bisque;
+				border-radius: 5px ;
+				margin-bottom: 0;
+			}
+			
+			.select>p
+			{
+				text-align: left;
+				padding: 1.5rem;
+				position: relative;
+				border-bottom-right-radius: 0;
+				border-bottom-left-radius: 0;
+				cursor: pointer;
+				color: rgba(102,102,102,.6);
+			}
+			
+			/*用border在后面绘制一个向下的标志*/
+			.select>p:after
+			{
+				display: block;
+				width: 10px;
+				height: 10px;
+				content: '';
+				position: absolute;
+				top: 1.4rem;
+				right: 2rem;
+				border-bottom: 1px solid #33CC66;
+				border-left: 1px solid #33CC66;
+				transform: rotate(-45deg);
+				transition: transform .3s ease-out,top .2s ease-out;
+			}
+			
+			.select ul
+			{
+				color: darkseagreen;
+				margin-top: 0;
+				border-top-left-radius: 0;
+				border-top-right-radius: 0;
+				list-style-type: none;
+				cursor: pointer;
+				overflow-y: auto;
+				max-height: 0;
+				transition: max-height .3s ease-out;
+			}			
+			
+			.select ul li
+			{
+				padding: .5rem;
+				display: block;
+				line-height: 3rem;
+				text-align: left;
+			}
+			
+			.select.open ul
+			{
+				max-height: 20rem;
+				transform-origin: 50% 0;
+				animation: slide-down .5s ease-out;
+			}			
+			
+			.select.open>p:after
+			{
+				position: absolute;
+				top: 1.6rem;
+				transform: rotate(-225deg);
+				transition: transform .3s ease-in, top .2s ease-in;
+			}
+			
+			@keyframes slide-down{
+				0%{
+					transform: scale(1,0);
+				}
+				25%{
+					transform: scale(1,1.25);
+				}
+				50%{
+					transform: scale(1,0.75);
+				}
+				75%{
+					transform: scale(1,1.1);
+				}
+				100%{
+					transform: scale(1,1);
+				}
+			}
+			
+			.select ul li:hover
+			{
+				background-color: rgba(102,153,102,.4);
+			}
+			
+			.select .selected
+			{
+				background-color: rgba(102,153,102,.8);
+			}
+		</style>
+		<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="head">
+				<h2>Custom Select</h2>
+			</div>
+			<div class="select">
+				<p>Please select</p>
+				<ul>
+					<li>HTML5</li>
+					<li>CSS3</li>
+					<li>JQuery</li>
+					<li>JavaScript</li>
+					<li>Backbone</li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('.select>p').on('click',function(){
+				$('.select').toggleClass('open');
+				return false;//阻止document的点击事件，会导致下拉菜单打开又立马收起来
+			})
+			
+			$('.select ul li').on('click',function(){
+				var me = $(this);
+				$('.select>p').text(me.text());
+				me.addClass('selected').siblings().removeClass('selected');
+				$('.select').toggleClass('.open');
+			})
+			
+			$(document).on('click',function(){
+				$('.select').removeClass('open');
+			})
+		</script>
+	</body>
+</html>
