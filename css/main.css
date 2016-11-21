@@ -1,0 +1,128 @@
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+html
+{
+	background: #8FBC8F;
+	font-size: 10px;
+	/*font-family:'Edwardian72601ebe317305';*/  /*很浪的字体*/
+	/*font-family:'COCOGOOSE7261d937a17305';*/
+	font-family:'HoangYen117262454f817305';
+	
+}
+
+.wrap
+{
+	width: 480px;
+	margin: 100px auto;
+	color: #fff;
+}
+
+h2
+{
+	width: 100%;
+	height: 15rem;
+	margin: 0 auto;
+	font-size: 40px;
+	font-family:'ChannelSlanted2725fe86bf17305';
+	line-height: 20rem;
+	text-align: center;
+}
+
+.select
+{
+	letter-spacing: .2em;
+	width: 80%;
+	margin: 0 auto;
+	font-size: 2rem;
+}
+
+.select>p,.select ul
+{
+	border: 1px solid bisque;
+	border-radius: 10px;
+	background: #fff;
+	cursor: pointer;
+}
+
+.select>p
+{
+	color: #008B8B;	
+	padding: 1.5rem;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	border-bottom-color: burlywood;
+	position: relative;
+}
+
+/*用border在后面绘制一个向下的标志*/
+.select>p:after
+{
+	position: absolute;
+	right: 2rem;
+	top: 1.2rem;
+	content: '';
+	display: block;
+	width: 15px;
+	height: 15px;
+	border-bottom: 1px solid darkslategrey;
+	border-right: 1px solid darkslategrey;
+	transform: rotate(45deg);
+	transition: transform .5s ease-out;
+}
+
+.select.open>p:after
+{
+	transform: rotate(225deg);
+	transition: transform .3s ease-in;
+}
+	
+.select ul
+{
+	list-style-type: none;
+	max-height: 0;
+	margin-top: 0;
+	background: #fff;
+	overflow-y: auto;
+	color: darkcyan;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	transition: max-height .3s ease-out; /*为了让展开慢点,收起来快点*/
+}
+
+.select ul li
+{
+	padding: 1.5rem;
+	/*padding: 1rem 1.5rem;*/
+	display: block;
+}
+
+.select ul li:hover
+{
+	background: rgba(102,153,102,.4);
+}
+
+.select ul li.selected
+{
+	background: rgba(102,153,102,.8);
+}
+
+.select.open ul
+{
+	max-height: 40rem;
+	transform-origin: 0 0;
+	transition: max-height .5s ease-out;
+	animation: slide-down .5s ease-out;
+}
+
+/*效果*/
+@keyframes slide-down{
+	0%{transform: scale(1,0);}
+	25%{transform: scale(1,1.25);}
+	50%{transform: scale(1,.75);}
+	75%{transform: scale(1,1.1);}
+	100%{transform: scale(1,1);}
+}
